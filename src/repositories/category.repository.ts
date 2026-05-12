@@ -7,7 +7,7 @@ export class CategoryRepository {
   endpoint = API_ENDPOINTS.CATEGORY.BASE;
 
   async create(data: CreateCategoryRequest): Promise<Category> {
-    return (await axiosInstance.post(`${this.endpoint}/create`, data)).data;
+    return (await axiosInstance.post(`${this.endpoint}/create`, data)).data.data;
   }
 
   async getAll(params?: PaginationParams): Promise<{ data: Category[]; pagination: any }> {
@@ -15,11 +15,11 @@ export class CategoryRepository {
   }
 
   async getById(id: string): Promise<Category> {
-    return (await axiosInstance.get(`${this.endpoint}/${id}`)).data;
+    return (await axiosInstance.get(`${this.endpoint}/${id}`)).data.data;
   }
 
   async update(id: string, data: Partial<CreateCategoryRequest>): Promise<Category> {
-    return (await axiosInstance.put(`${this.endpoint}/${id}/edit`, data)).data;
+    return (await axiosInstance.put(`${this.endpoint}/${id}/edit`, data)).data.data;
   }
 
   async delete(id: string): Promise<void> {

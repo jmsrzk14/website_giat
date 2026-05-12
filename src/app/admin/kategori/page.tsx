@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Plus, Search, ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 import AutoTable from "@/components/ui/table";
 import { useCategoryStore } from "@/stores/useCategoryStore";
 import { toastSuccess, toastError } from "@/lib/toast";
@@ -47,7 +48,7 @@ export default function KategoriPage() {
   };
 
   const filteredCategories = categories.filter((item) =>
-    item.name.toLowerCase().includes(searchInput.toLowerCase())
+    (item?.name || "").toLowerCase().includes(searchInput.toLowerCase())
   );
 
   const handleSaveEdit = async () => {
@@ -250,12 +251,12 @@ export default function KategoriPage() {
 
       <div className="flex items-center justify-between mb-6 animate-slideInDown">
         <h1 className="text-3xl font-bold text-gray-800">Data Kategori</h1>
-        <a
+        <Link
           href="/admin/kategori/create"
           className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl flex items-center gap-2 hover:from-blue-700 hover:to-blue-800 transition shadow hover:shadow-lg active:scale-95 duration-300 font-medium"
         >
           <Plus className="w-5 h-5" /> Tambah Kategori
-        </a>
+        </Link>
       </div>
 
       <div className="mb-6 animate-fadeIn">
@@ -269,7 +270,7 @@ export default function KategoriPage() {
               setSearchInput(e.target.value);
               setPage(1);
             }}
-            className="w-26 text-gray-800 pl-10 pr-4 py-3 border border-gray-300 rounded-lg"
+            className="w-full text-gray-800 pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none transition-all"
           />
 
         </div>

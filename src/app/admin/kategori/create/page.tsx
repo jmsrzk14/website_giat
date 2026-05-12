@@ -25,6 +25,7 @@ export default function CreateKategoriPage() {
     setLoading(true);
     if (!form.name || !form.description) {
       toastError("Semua field wajib diisi!");
+      setLoading(false);
       return;
     }
 
